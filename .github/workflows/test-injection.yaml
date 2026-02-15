@@ -1,0 +1,19 @@
+name: Test Script Injection
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vulnerable Step (mirrors distroless image-check.yaml)
+        run: |
+          echo "Head ref value: ${{ github.head_ref }}"
+          echo "This simulates: --head-ref ${{ github.head_ref }}"
