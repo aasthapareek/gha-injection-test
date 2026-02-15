@@ -4,16 +4,12 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  pull-requests: write
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Vulnerable Step (mirrors distroless image-check.yaml)
+      - name: Vulnerable Step (mirrors distroless image-check.yaml line 56)
         run: |
-          echo "Head ref value: ${{ github.head_ref }}"
-          echo "This simulates: --head-ref ${{ github.head_ref }}"
+          echo "Before injection test"
+          echo "--head-ref ${{ github.head_ref }}"
+          echo "After injection test"
